@@ -34,7 +34,7 @@ class LinkedList:
         while node:
             if node.next and node.next.data == value:
                 del node.next.data
-                node.next = node.next.next 
+                node.next = node.next.next
                 return
             node = node.next
 
