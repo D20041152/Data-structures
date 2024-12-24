@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Node struct {
 	Data interface{}
 	Next *Node
@@ -34,4 +36,19 @@ func (l *LinkedList) Insert(x int) {
 	l.Tail = node
 	l.Tail.Prev = temp
 
+}
+
+func (l *LinkedList) Delete(x int) error {
+	node := l.Head
+	for {
+		if node.Data == x {
+			(node.Prev).Next = node.Next
+			(node.Next).Prev = node.Prev
+			return nil
+		}
+		node = node.Next
+		if node == nil {
+			return fmt.Errorf("такого значение нет")
+		}
+	}
 }
