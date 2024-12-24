@@ -41,14 +41,29 @@ func (l *LinkedList) Insert(x int) {
 func (l *LinkedList) Delete(x int) error {
 	node := l.Head
 	for {
+
+		if x == l.Head.Data {
+			l.Head = l.Head.Next
+			l.Head.Prev = nil
+			return nil
+		}
+
+		if x == l.Tail.Data {
+			l.Tail = l.Tail.Prev
+			l.Tail.Next = nil
+			return nil
+		}
+
 		if node.Data == x {
 			(node.Prev).Next = node.Next
 			(node.Next).Prev = node.Prev
 			return nil
 		}
+
 		node = node.Next
 		if node == nil {
-			return fmt.Errorf("такого значение нет")
+			return fmt.Errorf("такого значения нет")
 		}
 	}
+
 }
